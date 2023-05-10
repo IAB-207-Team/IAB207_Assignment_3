@@ -16,8 +16,8 @@ class User(db.Model, UserMixin):
 
 
 
-class Destination(db.Model):
-    __tablename__ = 'events'
+class Events(db.Model):
+    __tablename__ = 'event'
     id = db.Column(db.Integer, primary_key=True)
     event_title = db.Column(db.String(80))
     date = db.Column(db.Date)
