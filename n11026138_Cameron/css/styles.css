@@ -1,0 +1,53 @@
+.card header{
+    max-width: 500;
+    max-height: 500;
+}
+
+.title {
+    padding-bottom: 25px;
+}
+
+.input-group-text{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bolder;
+    font-size: x-large;
+}
+
+.comment-title{ 
+    padding-top: 50px;
+}
+
+.card-w-75 {
+    padding-left: 100px ;
+}
+
+.userhistory {
+    text-align: center;
+}
+
+.container {
+    position: absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    padding-bottom: 50px;
+    
+  }
+
+.userhistory {
+    text-align: center;
+    padding-top: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;  
+    font-weight: bolder;
+}
+
+.card-group {
+    padding-left: 100;
+}
+form{
+    text-align: center;
+}
+
+.form-label{
+    text-transform: capitalize;
+}
