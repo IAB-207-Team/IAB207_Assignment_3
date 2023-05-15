@@ -13,7 +13,7 @@ def search():
     if request.args['search']:
         print(request.args['search'])
         dest = "%" + request.args['search'] + '%'
-        event = Events.query.filter(Events.description.like(dest)).all()
+        event = Events.query.filter(Events.description.like(even)).all()
         return render_template('index.html', event=event)
     else:
         return redirect(url_for('main.index'))
