@@ -43,9 +43,9 @@ def login(): #view function
      login_form = LoginForm()
      error=None
      if(login_form.validate_on_submit()==True):
-         user_name = login_form.user_name.data
+         email_id = login_form.email_id.data
          password = login_form.password.data
-         user = User.query.filter_by(name=user_name).first()
+         user = User.query.filter_by(name=email_id).first()
          if user is None:
              error='Incorrect credentials supplied'
          elif not check_password_hash(user.password_hash, password): # takes the hash and password
