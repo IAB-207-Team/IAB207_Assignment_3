@@ -6,7 +6,7 @@ from wtforms.validators import InputRequired, Length, Email, EqualTo
 
 #creates the login information
 class LoginForm(FlaskForm):
-    user_name=StringField("User Name", validators=[InputRequired('Enter user name')])
+    email_id=StringField("Email Address", validators=[InputRequired('Enter email')])
     password=PasswordField("Password", validators=[InputRequired('Enter user password')])
     submit = SubmitField("Login")
 
