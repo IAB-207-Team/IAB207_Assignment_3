@@ -1,0 +1,150 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="myCarousel" class="carousel slide"
+data-bs-ride="carousel">
+  <ol class="carousel-indicators">
+   <li data-bs-target="myCarousel" data-bs-slide-to="0" class="active"></li>
+   <li data-bs-target="myCarousel" data-bs-slide-to="1"></li>>
+   <li data-bs-target="myCarousel" data-bs-slide-to="2"></li>>
+  </ol> 
+ <div class="carousel-inner">
+     <div class="carousel-item active">
+     <div class="overlay-image"
+     style="background-image:url(./images/event1.jpg);"></div>
+       <div class="container">
+         <h1>Austin Rostin</h1>
+         <p>
+           Austin plays country music with soulful undertones, come see him live<br>
+         </p>
+         <h3>
+           Event Status: OPEN<br>
+           Loacation: Brisbane: The Gabba
+         </h3>
+         <a href="eventdesc.html" class="btn btn-lg btn-warning">
+           See Event
+         </a>
+       </div>
+     </div>
+     <div class="carousel-item">
+     <div class="overlay-image"
+       style="background-image:url(./images/event2.jpg);"></div>
+       <div class="container">
+         <h1>Bartemius Potter</h1>
+         <p>
+           Bartemius plays alternate music ranging from blues to jazz, you will not leave disappointed <br>
+         </p>
+         <h3>
+           Event Status: SOLD OUT<br>
+           Loacation: Coffs Harbour: The Big Banana
+         </h3>
+         <a href="eventdesc.html" class="btn btn-lg btn-warning">
+           See Event
+         </a>
+       </div>
+     </div>
+     <div class="carousel-item">
+       <div class="overlay-image"
+       style="background-image:url(./images/event3.jpg);"></div>
+       <div class="container">
+         <h1>The Marauders</h1>
+         <p>
+           Come and experience some good ol' classic rock'n'roll with the Marauders <br>
+         </p>
+         <h3>
+           Event Status: OPEN<br>
+           Loacation: Sydney: The Opera House
+         </h3>
+         <a href="eventdesc.html" class="btn btn-lg btn-warning">
+           See Event
+         </a>
+       </div>
+     </div>
+ </div>
+ <!-- Buttons to navigate between the different slides on the carousel-->
+ <a href="#myCarousel" 
+ class="carousel-control-prev" role="button"
+ data-bs-slide="prev">
+     <span class="sr-only"></span>
+     <span class="carousel-control-prev-icon"
+     arta-hidden="true"></span>  
+ </a>
+ <a href="#myCarousel" 
+ class="carousel-control-next" role="button"
+ data-bs-slide="next">
+     <span class="sr-only"></span>
+     <span class="carousel-control-next-icon"
+     arta-hidden="true"></span>  
+ </a>
+</div>
+
+<!-- Adding flex cards for the different events below the carousel-->
+
+<h3 class="eventheading" style="text-align: center;">
+ Upcoming Music Events
+ <div class="dropdown">
+   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+     Filter Genre
+   </button>
+   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+     <a class="dropdown-item" href="#">Pop</a>
+     <a class="dropdown-item" href="#">Rap</a>
+     <a class="dropdown-item" href="#">Country</a>
+     <a class="dropdown-item" href="#">All</a>
+   </div>
+ </div>
+</h3>
+
+
+
+
+<div class="container card">
+ <div class="row">
+   <div class="col-md-4">
+     <div class="card">
+       <img src="images/card1.jpg" alt="An event in brisbane" class="card-img-top">
+       <div class="card-body">
+         <h5 class="card-title" style="text-align: center;">Music In the Shadows</h5>
+         <p class="card-text">A cultural experience of shadows and mystery with stunning ethereal music. <br>
+                             Event Status: OPEN <br> Location: Melbourne
+
+         </p>
+         <a href="eventdesc.html" class="btn btn-lg btn-warning">
+           See Event
+         </a>
+       </div>
+     </div>
+   </div>
+   <div class="col-md-4">
+     <div class="card">
+       <img src="images/card2.jpg" alt="An event in brisbane" class="card-img-top">
+       <div class="card-body">
+         <h5 class="card-title">DJ BEHX</h5>
+         <p class="card-text">Jump into a fun environment with some pop tunes pumping all night long with DJ BEHX live!
+           <br> Event Status: SOLD OUT <br> Location: Sydney
+         </p>
+         <a href="eventdesc.html" class="btn btn-lg btn-warning">
+           See Event
+         </a>
+       </div>
+     </div>
+   </div>
+   <div class="col-md-4">
+     <div class="card">
+       <img src="images/card3.jpg" alt="An event in brisbane" class="card-img-top">
+       <div class="card-body">
+         <h5 class="card-title">An event in Brisbane</h5>
+         <p class="card-text">jhakdls fjklsdajklds fjlkdas fjkldasfjd<br>
+                               Status: OPEN <br> Location Brisbane</p>
+                               <a href="eventdesc.html" class="btn btn-lg btn-warning">
+                                 See Event
+                               </a>
+       </div>
+     </div>
+   </div>
+ </div>
+</div>
+
+{% endblock %}
