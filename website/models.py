@@ -2,54 +2,45 @@ from . import db
 from datetime import datetime
 from flask_login import UserMixin
 
-class User(db.Model, UserMixin):
-    __tablename__='users' # good practice to specify table name
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), index=True, unique=True, nullable=False)
-    emailid = db.Column(db.String(100), index=True, unique=True, nullable=False)
-	#password is never stored in the DB, an encrypted password is stored
-	# the storage should be at least 255 chars long
-    password_hash = db.Column(db.String(255), nullable=False)
+class User(db.model, UserMixing):
+    __tablename__ = 'users'
 
-    # relation to call user.comments and comment.created_by
-    comments = db.relationship('Comment', backref='user')
+    id = Column(Integer, primary_key=True)
+    name = Column(String(100), nullable=False)
+    emailid = Column(String(100), nullable=False)
+    password_hash = Column(String(255), nullable=False)
 
 
+class Event(db.model):
+    __tablename__ = 'events'
 
-class Events(db.Model):
-    __tablename__ = 'event'
-    id = db.Column(db.Integer, primary_key=True)
-    event_title = db.Column(db.String(80))
-    date = db.Column(db.Date)
-    start_time = db.Column(db.Time, nullable=False)
-    end_time = db.Column(db.Time, nullable=False)
-    description = db.Column(db.String(255))
-    genre = db.Column(db.String(255))
-    #email = db.Column(db.String(100), index=True, nullable=False) <-- idk if we should have this
-    location = db.Column(db.String(255))
-    Amount_of_Tickets = db.Column(db.Integer)
-    Ticket_Status = db.Column(db.String(255))
-    Ticket_Price = db.Column(db.Integer)
-    image = db.Column(db.String(400))
-    # ... Create the Comments db.relationship
-   
-    comments = db.relationship('Comment', backref='event')
-  
+    id = Column(Integer, primary_key=True)
+    event_title = Column(String(80))
+    date = Column(Date)
+    start_time = Column(Time, nullable=False)
+    end_time = Column(Time, nullable=False)
+    description = Column(String(255))
+    genre = Column(String(255))
+    location = Column(String(255))
+    Amount_of_Tickets = Column(Integer)
+    Ticket_Status = Column(String(255))
+    Ticket_Price = Column(Integer)
+    image = Column(String(400))
+    comments = relationship('Comment', backref='event')
 
-    
-	
     def __repr__(self): #string print method
         return "<Name: {}>".format(self.name)
 
-class Comment(db.Model):
+class Comment(db.model):
     __tablename__ = 'comments'
-    id = db.Column(db.Integer, primary_key=True)
-    text = db.Column(db.String(400))
-    created_at = db.Column(db.DateTime, default=datetime.now())
-    #add the foreign keys
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    event_id = db.Column(db.String(100), db.ForeignKey('events.id'))
 
+    id = Column(Integer, primary_key=True)
+    text = Column(String(400))
+    created_at = Column(DateTime, server_default='CURRENT_TIMESTAMP')
+    user_id = Column(Integer, ForeignKey('users.id'))
+    event_id = Column(Integer, ForeignKey('events.id'))
+
+    user = relationship('User', backref='comments')
 
     def __repr__(self):
         return "<Comment: {}>".format(self.text)
