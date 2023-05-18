@@ -38,9 +38,10 @@ class Comment(db.model):
     text = Column(String(400))
     created_at = Column(DateTime, server_default='CURRENT_TIMESTAMP')
     user_id = Column(Integer, ForeignKey('users.id'))
-    event_id = Column(Integer, ForeignKey('events.id'))
+    event_id = Column(Integer, ForeignKey('event.id'))
 
     user = relationship('User', backref='comments')
 
+#Need to Add a booked table to keep track of tickets
     def __repr__(self):
         return "<Comment: {}>".format(self.text)
