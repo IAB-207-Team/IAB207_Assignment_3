@@ -26,10 +26,9 @@ class Event(db.model):
     Ticket_Status = Column(String(255))
     Ticket_Price = Column(Integer)
     image = Column(String(400))
+    
     comments = relationship('Comment', backref='event')
-
-    def __repr__(self): #string print method
-        return "<Name: {}>".format(self.name)
+    event_booking = relationship('Booking', backref='event_id')
 
 class Comment(db.model):
     __tablename__ = 'comments'
@@ -43,5 +42,13 @@ class Comment(db.model):
     user = relationship('User', backref='comments')
 
 #Need to Add a booked table to keep track of tickets
+class Booking(db.model):
+    __tablename__ = 'booking'
+    order_id = Column(Integer)
+    user_id = Column(Integer, ForeignKey('users.id'))
+    event_id = Column(Integer, ForeignKey('event.id'))
+    
+    user_booking = relationship('User', backref='booking')
+
     def __repr__(self):
         return "<Comment: {}>".format(self.text)
