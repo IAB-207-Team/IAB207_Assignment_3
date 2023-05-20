@@ -1,4 +1,6 @@
 #This is just something I quickly made up, but I might be useful for getting the ticketing system to work
+from flask import Flask, render_template, request
+import sqlite3
 
 @app.route('/events/<event_id>/book', methods=['GET', 'POST'])
 def book_event(event_id):
