@@ -7,7 +7,7 @@ class User(db.model, UserMixing):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(100), nullable=False)
-    emailid = Column(String(100), nullable=False)
+    emailid = Column(String(100), nullable=False, unique=True)
     password_hash = Column(String(255), nullable=False)
 
 
