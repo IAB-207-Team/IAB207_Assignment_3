@@ -23,7 +23,7 @@ class Event(db.model):
     genre = Column(String(255))
     location = Column(String(255))
     Amount_of_Tickets = Column(Integer)
-    event_Status = Column(String(255))
+    event_Status = Column(String(255), default='Upcoming Event')
     ticket_Price = Column(Integer)
     image = Column(String(400))
 
