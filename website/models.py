@@ -5,16 +5,16 @@ from flask_login import UserMixin
 class User(db.model, UserMixing):
     __tablename__ = 'users'
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String(100), nullable=False)
-    emailid = Column(String(100), nullable=False)
+    emailid = Column(String(100), nullable=False, unique=True)
     password_hash = Column(String(255), nullable=False)
 
 
 class Event(db.model):
     __tablename__ = 'events'
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     event_title = Column(String(80))
     date = Column(Date)
     start_time = Column(Time, nullable=False)
@@ -23,7 +23,7 @@ class Event(db.model):
     genre = Column(String(255))
     location = Column(String(255))
     Amount_of_Tickets = Column(Integer)
-    event_Status = Column(String(255))
+    event_Status = Column(String(255), default='Upcoming Event')
     ticket_Price = Column(Integer)
     image = Column(String(400))
 
@@ -44,7 +44,7 @@ class Comment(db.model):
 class Booking(db.model):
     __tablename__ = 'booking'
     
-    order_id = Column(Integer)
+    order_id = Column(Integer, autoincrement=True)
     order_date = Column(Date)
     user_id = Column(Integer, ForeignKey('users.id'))
     event_id = Column(Integer, ForeignKey('events.id'))
