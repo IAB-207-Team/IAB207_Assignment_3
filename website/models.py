@@ -44,7 +44,7 @@ class Comment(db.model):
 class Booking(db.model):
     __tablename__ = 'booking'
     
-    order_id = Column(Integer)
+    order_id = Column(Integer, autoincrement=True)
     order_date = Column(Date)
     user_id = Column(Integer, ForeignKey('users.id'))
     event_id = Column(Integer, ForeignKey('events.id'))
