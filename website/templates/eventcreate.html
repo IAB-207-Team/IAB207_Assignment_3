@@ -3,117 +3,148 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MusicMania EMS</title>
-    
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <title>TUNE TOWN</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="css/stylesheet.css" rel="stylesheet" type="text/css">
   </head>
-  <style>
-  </style>
+
   <body>
-   
-    <!-- The Navbar which is acting as the header for the website-->
-    <header class="header">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">
-            <center>
-            <img src="images/mm logo.png" alt="logo" width="100" height="100"
-            class="d-inline-block align-centre"/>
-            </a>
-            </center>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="eventcreate.html" tabindex="-1" aria-disabled="true">Create An Event</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Account
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="index.html">View Account Details</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="userhistory.html">See Purchase History</a></li>
-                </ul>
-              </li>
-            </ul>
+    <div id="wrapper">
+        <!-- Contains the heading, navigation and banner image -->
+        <header>
+          <div id="navigationbar">
+            <nav class="navbar navbar-inverse">
+              <div class="container-fluid">
+                  <div class="navbar-header">
+                      <button type="button" class="navbar-toggle" data-bs-toggle="collapse" data-bs-target="#myNavbar">
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                      </button>
+                      <a class="navbar-brand" href="index.html" style="padding-left: 20px; color: #0892d0; font-family: Bradley Hand">TUNE TOWN</a>
+                  </div>
+                  
+                  <div class="collapse navbar-collapse" id="myNavbar">
+                    
+                      <ul class="nav navbar-nav">
+                          <li><a href="index.html" style="color: white;">Event</a></li>
+                          <li><a href="create_event.html"style="color: white;">Create Event</a></li>
+                          <li><a href="event_booking_history.html"style="color: white;">Booking History</a></li>
+                      </ul>
+                      <ul class="nav navbar-nav navbar-right" >
+                          <li ><a href="#" style="color: white;"><span class="glyphicon glyphicon-log-in" style="color: white;"></span> Login</a></li>
+                          <li><a href="#" style="color: white;"><span class="glyphicon glyphicon-log-in" style="color: white;"></span> Sign Up</a></li>
+                      </ul>
+                      <form class="navbar-form navbar-right" role="search" style = "background-color: black;">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit" style = "color: black;">Search</button>
+                      </form>
+                     
+                  </div>
+              </div>
+          </nav>
           </div>
-        </div>
-      </nav>
-    </header>
-    <div class="container">
-      <h1 class="userhistory" style="text-align: center;">Create An Event</h1>
-        <h2 style="text-align: center;"> Enter Details</h2>
-        <form class="row g-3">
-          <div class="col-md-4">
-            <label for="eventtitle" class="form-label">Event Title</label>
-            <input type="text" class="form-control" id="eventitle" required>
+        </header>
+        
+        
+        <div style="padding-left: 5%; padding-right: 5%; padding-top: 20px;">
+        <h5 class="mb-4">Create An Event</h5>
+        <form action="/action_page.php">
+        
+          <div class="form-group">
+            <label for="eventName">Event Name:</label>
+            <input type="text" id="eventName" class="form-control" placeholder="Enter the name of the event">
           </div>
-          <div class="col-md-4">
-            <label for="eventdate" class="form-label">Event Date</label>
-            <input type="text" class="form-control" id="eventdate" required>
+        
+          <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" class="form-control" placeholder="Enter a description of the event"></textarea>
           </div>
-          <div class="col-md-2">
-            <label for="eventstart" class="form-label">Event Start Time</label>
-            <input type="text" class="form-control" id="eventstart" required>
+        
+          <div class="form-group">
+            <label for="artist">Artist Names:</label>
+            <input type="text" id="artist" class="form-control" placeholder="Enter the name(s) of the artist(s)">
           </div>
-          <div class="col-md-2">
-            <label for="eventend" class="form-label">Event End Time</label>
-            <input type="text" class="form-control" id="eventend" required>
+        
+          <div class="form-group">
+            <label>Date and Time:</label>
+            <div class="row">
+              <div class="col-md-6">
+                <input type="date" id="Date" class="form-control" placeholder="Enter the date of the event">
+              </div>
+              <div class="col-md-6">
+                <input type="time" id="Time" class="form-control" placeholder="Enter the start time of the event">
+              </div>
+            </div>
           </div>
-          <div class="col-md-8">
-            <label for="eventdescription" class="form-label">Event Description</label>
-            <textarea class="form-control" id="eventdescription" rows="4" required> </textarea>
+        
+          <div class="form-group">
+            <label for="venue">Venue:</label>
+            <input type="text" id="venue" class="form-control" placeholder="Enter the venue of the event">
           </div>
-          <div class="col-md-4">
-            <label for="emailaddr" class="form-label">Email</label>
-            <input type="email" class="form-control" id="emailaddr" required>
+        
+          <div class="form-group">
+            <label for="price">Price Per Ticket:</label>
+            <div class="input-group">
+              <span class="input-group-prepend">
+                <span class="input-group-text">$</span>
+              </span>
+              <input type="number" step="any" id="price" class="form-control" placeholder="Enter the price per ticket">
+            </div>
           </div>
-          <div class="col-md-4">
-            <label for="eventgenre" class="form-label">Musical Genre</label>
-            <input type="text class" class="form-control" id="eventgenre" required>
+        
+          <div class="form-group">
+            <label for="tickets">Number of Tickets Available:</label>
+            <input type="number" id="tickets" class="form-control" placeholder="Enter the number of tickets available">
           </div>
-          <div class="col-md-4">
-            <label for="eventloca" class="form-label">Event Location and Venue</label>
-            <input type="text" class="form-control" id="eventloca" required>
+        
+          <div class="form-group">
+            <label for="status">Status:</label>
+            <select id="status" name="status" class="form-control">
+              <option> Please Choose an Option</option>
+              <option value="upcoming">Upcoming</option>
+              <option value="inactive">Inactive</option>
+              <option value="booked">Booked</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
           </div>
-          <div class="col-md-2">
-            <label for="ticektnr" class="form-label">Number of Tickets</label>
-            <input type="email" class="form-control" id="ticketnr" required>
+        
+          <div class="form-group">
+            <label for="myFile">Upload Image:</label>
+            <input type="file" id="myFile" name="filename" class="form-control-file">
           </div>
-          <div class="col-md-2">
-            <label for="ticektprice" class="form-label">Ticket Type and Price</label>
-            <input type="email" class="form-control" id="ticketprice" required>
+        
+          <div class="form-group" style=" display: flex; justify-content: center;">
+            <button type="submit" class="btn btn-primary mr-2">Add Event</button>
           </div>
-          <img src="..." alt="Upload An Event Image" class="img-thumbnail">
-          <button type="button" class="btn btn-info" href="index.html">Create Event</button>
+          <div class="form-group" style=" display: flex; justify-content: center;">
+            <button type="reset" class="btn btn-secondary">Clear Form</button>
+          </div>
+          
         </form>
-      
-    </div>
-    
-<!-- Adding the form to create an event -->
+      </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" 
+      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" 
+      crossorigin="anonymous">
+
+    </script>
+  </div>
 
 
-  <!-- Adding the Footer-->
-  <footer class="bg-dark py-5 mt-5">
-    <div class="container-fluid text-light text-center">
-      <p class="display-6 mb-3">MusicMania</p>
-      <small class="text-write-50">&copy; Copyright by Blake Cameron. All rights reserved.</small>
-    </div>
-  </footer>
-
-</div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" 
-    integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" 
-    integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
   </body>
+
+  <!-- Footer - Responsive -->
+  <div class="footer-basic" style="position: relative;">
+    <footer>
+
+        <ul class="list-inline">
+            <li class="list-inline-item" style = "font-size: 15px;"><a href="#">Terms and Use</a></li>
+            <li class="list-inline-item" style = "font-size: 15px;"><a href="#">Privacy Policy</a></li>
+            <li class="list-inline-item" style = "font-size: 15px;"><a href="#">Cookies Policy</a></li>
+        </ul>
+        <p><a href="mailto:tunetown@musicevents.com" style="color:white; font-size: 12px;">Email Us: tunetown@musicevents.com</a></p>
+        <p class="copyright">Tune Towns © 2023</p>
+    </footer>
+</div>
 </html>

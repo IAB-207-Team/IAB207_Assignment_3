@@ -2,145 +2,161 @@
 {% extends "base.html" %}
 
 {% block content %}
+<body>
+  <div id="wrapper">
+      <!-- Contains the heading, navigation and banner image -->
+      <header>
+          <div id="navigationbar">
+            <nav class="navbar navbar-inverse">
+              <div class="container-fluid">
+                  <div class="navbar-header">
+                      <button type="button" class="navbar-toggle" data-bs-toggle="collapse" data-bs-target="#myNavbar">
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                      </button>
+                      <a class="navbar-brand" href="index.html" style="padding-left: 20px; color: #0892d0; font-family: Bradley Hand">TUNE TOWN</a>
+                  </div>
+                  
+                  <div class="collapse navbar-collapse" id="myNavbar">
+                    
+                      <ul class="nav navbar-nav">
+                          <li><a href="index.html" style="color: white;">Event</a></li>
+                          <li><a href="create_event.html"style="color: white;">Create Event</a></li>
+                          <li><a href="event_booking_history.html"style="color: white;">Booking History</a></li>
+                      </ul>
+                      <ul class="nav navbar-nav navbar-right" >
+                          <li ><a href="#" style="color: white;"><span class="glyphicon glyphicon-log-in" style="color: white;"></span> Login</a></li>
+                          <li><a href="#" style="color: white;"><span class="glyphicon glyphicon-log-in" style="color: white;"></span> Sign Up</a></li>
+                      </ul>
+                      <form class="navbar-form navbar-right" role="search" style = "background-color: black;">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit" style = "color: black;">Search</button>
+                      </form>
+              
 
-<div id="myCarousel" class="carousel slide"
-data-bs-ride="carousel">
-  <ol class="carousel-indicators">
-   <li data-bs-target="myCarousel" data-bs-slide-to="0" class="active"></li>
-   <li data-bs-target="myCarousel" data-bs-slide-to="1"></li>>
-   <li data-bs-target="myCarousel" data-bs-slide-to="2"></li>>
-  </ol> 
- <div class="carousel-inner">
-     <div class="carousel-item active">
-     <div class="overlay-image"
-     style="background-image:url(./images/event1.jpg);"></div>
-       <div class="container">
-         <h1>Austin Rostin</h1>
-         <p>
-           Austin plays country music with soulful undertones, come see him live<br>
-         </p>
-         <h3>
-           Event Status: OPEN<br>
-           Loacation: Brisbane: The Gabba
-         </h3>
-         <a href="eventdesc.html" class="btn btn-lg btn-warning">
-           See Event
-         </a>
-       </div>
-     </div>
-     <div class="carousel-item">
-     <div class="overlay-image"
-       style="background-image:url(./images/event2.jpg);"></div>
-       <div class="container">
-         <h1>Bartemius Potter</h1>
-         <p>
-           Bartemius plays alternate music ranging from blues to jazz, you will not leave disappointed <br>
-         </p>
-         <h3>
-           Event Status: SOLD OUT<br>
-           Loacation: Coffs Harbour: The Big Banana
-         </h3>
-         <a href="eventdesc.html" class="btn btn-lg btn-warning">
-           See Event
-         </a>
-       </div>
-     </div>
-     <div class="carousel-item">
-       <div class="overlay-image"
-       style="background-image:url(./images/event3.jpg);"></div>
-       <div class="container">
-         <h1>The Marauders</h1>
-         <p>
-           Come and experience some good ol' classic rock'n'roll with the Marauders <br>
-         </p>
-         <h3>
-           Event Status: OPEN<br>
-           Loacation: Sydney: The Opera House
-         </h3>
-         <a href="eventdesc.html" class="btn btn-lg btn-warning">
-           See Event
-         </a>
-       </div>
-     </div>
- </div>
- <!-- Buttons to navigate between the different slides on the carousel-->
- <a href="#myCarousel" 
- class="carousel-control-prev" role="button"
- data-bs-slide="prev">
-     <span class="sr-only"></span>
-     <span class="carousel-control-prev-icon"
-     arta-hidden="true"></span>  
- </a>
- <a href="#myCarousel" 
- class="carousel-control-next" role="button"
- data-bs-slide="next">
-     <span class="sr-only"></span>
-     <span class="carousel-control-next-icon"
-     arta-hidden="true"></span>  
- </a>
+
+                  </div>
+
+
+                  
+              </div>
+          </nav>
+        </div>
+      </div>
+
+          <div class="jumbotron jumbotron-fluid">
+              <div class="container">
+                <h2>WELCOME TO TUNE TOWN!</h2>
+                <h3>IF YOU HAVE THE TIME, WE HAVE THE MUSIC!</h3>
+              </div>
+          </div>
+      </header>
+           
+  <main id="main">
+    <div class="events-grid">
+      <h4 style="margin: auto;">Upcoming Events</h4>
+      <br>
+    <section class="event" style="display: flex; justify-content: center;">
+
+      <article class="event-detail" >
+        <img src="images/Music_event 1.jpg" alt="Event 1" style="width:280px; height: 200px; "/>
+        <div>
+          <h3><strong>Red Bull Music Festival</strong></h3>
+          <p><strong>Artist:</strong> Drake</p>
+          <p><strong>Date:</strong> 15th July 2023</p>
+          <p><strong>Time:</strong> 7pm - 9pm</p>
+          <p><strong>Status:</strong> Upcoming</p>
+          <a href="event_details.html" class="btn btn-primary" style="display: flex; justify-content: center; ">More Details</a>
+        </div>
+      </article>
+
+      <article class="event-detail">
+        <img src="images/Music_event 2.jpg" alt="Event 2" style="width:280px; height: 200px;"/>
+        <div>
+          <h3><strong>Summer Party</strong></h3>
+          <p><strong>Artist:</strong> Shawn Mendes</p>
+          <p><strong>Date:</strong> 5th June 2023</p>
+          <p><strong>Time:</strong> 3pm - 5pm</p>
+          <p><strong>Status:</strong> Booked</p>
+          <a href="event_details.html" class="btn btn-primary" style="display: flex; justify-content: center;">More Details</a>
+        </div>
+      </article>
+      
+      <article class="event-detail">
+        <img src="images/Music_event 3.jpg" alt="Event 3" style="width:280px; height: 200px;"/>
+        <div>
+          <h3><strong>Beale Street Music</strong></h3>
+          <p><strong>Artist:</strong> BIG BOOGIE</p>
+          <p><strong>Date:</strong> 5th May 2023</p>
+          <p><strong>Time:</strong> 6pm</p>
+          <p><strong>Status:</strong> Cancelled</p>
+          <a href="event_details.html" class="btn btn-primary" style="display: flex; justify-content: center;">More Details</a>
+        </div>
+      </article>
+
+      <article class="event-detail">
+        <img src="images/Music_event 4.jpg" alt="Event 4" style="width:280px; height: 200px;"/>
+        <div>
+          <h3><strong>Bluefest</strong></h3>
+          <p><strong>Artist:</strong> John Butler</p>
+          <p><strong>Date:</strong> 1st - 5th June 2023 </p>
+          <p><strong>Time:</strong> 7pm </p>
+          <p><strong>Status:</strong> Inactive</p>
+          <a href="event_details.html" class="btn btn-primary" style="display: flex; justify-content: center;">More Details</a>
+        </div>
+      </article>
+
+      <article class="event-detail">
+        <img src="images/Music_event 5.jpg" alt="Event 5" style="width:280px; height: 200px;"/>
+        <div>
+          <h3><strong>Four Winds</strong></h3>
+          <p><strong>Artist:</strong> Inhaler</p>
+          <p><strong>Date:</strong> 2nd - 4th June 2023</p>
+          <p><strong>Time:</strong> 2pm</p>
+          <p><strong>Status:</strong> Upcoming </p>
+          <a href="event_details.html" class="btn btn-primary" style="display: flex; justify-content: center;">More Details</a>
+        </div>
+      </article>
+
+    </section>
+  </div>
+  <br>
+  <br>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <h4 style="color: white"> Categories </h4>
+    <a href="#">Blues</a>
+    <a href="#">Classical</a>
+    <a href="#">Jazz</a>
+    <a href="#">Reggae</a>
+  </div>
+  
+  <div style="display: flex; justify-content: center; align-items: center;">
+    <button class="btn btn-primary" style="display: flex; justify-content: center; align-items: center;"><span onclick="openNav()">&#9776; VIEW MORE CATEGORIES</span></button>
+  </div>
+  
+  <script>
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+  }
+  
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft= "0";
+  }
+  </script>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" 
+    crossorigin="anonymous">
+  </script>
 </div>
+<br>
+<br>
+</body>
 
-<!-- Adding flex cards for the different events below the carousel-->
-
-<h3 class="eventheading" style="text-align: center;">
- Upcoming Music Events
- <div class="dropdown">
-   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-     Filter Genre
-   </button>
-   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-     <a class="dropdown-item" href="#">Pop</a>
-     <a class="dropdown-item" href="#">Rap</a>
-     <a class="dropdown-item" href="#">Country</a>
-     <a class="dropdown-item" href="#">All</a>
-   </div>
- </div>
-</h3>
-
-
-<div class="container card">
- <div class="row">
-   <div class="col-md-4">
-     <div class="card">
-       <img src="images/card1.jpg" alt="An event in brisbane" class="card-img-top">
-       <div class="card-body">
-         <h5 class="card-title" style="text-align: center;">Music In the Shadows</h5>
-         <p class="card-text">A cultural experience of shadows and mystery with stunning ethereal music. <br>
-                             Event Status: OPEN <br> Location: Melbourne
-
-         </p>
-         <a href="eventdesc.html" class="btn btn-lg btn-warning">
-           See Event
-         </a>
-       </div>
-     </div>
-   </div>
-   <div class="col-md-4">
-     <div class="card">
-       <img src="images/card2.jpg" alt="An event in brisbane" class="card-img-top">
-       <div class="card-body">
-         <h5 class="card-title">DJ BEHX</h5>
-         <p class="card-text">Jump into a fun environment with some pop tunes pumping all night long with DJ BEHX live!
-           <br> Event Status: SOLD OUT <br> Location: Sydney
-         </p>
-         <a href="eventdesc.html" class="btn btn-lg btn-warning">
-           See Event
-         </a>
-       </div>
-     </div>
-   </div>
-   <div class="col-md-4">
-     <div class="card">
-       <img src="images/card3.jpg" alt="An event in brisbane" class="card-img-top">
-       <div class="card-body">
-         <h5 class="card-title">An event in Brisbane</h5>
-         <p class="card-text">jhakdls fjklsdajklds fjlkdas fjkldasfjd<br>
-                               Status: OPEN <br> Location Brisbane</p>
-          <a href="eventdesc.html" class="btn btn-lg btn-warning"> See Event</a>
-       </div>
-     </div>
-   </div>
- </div>
-</div>
 
 {% endblock %}
