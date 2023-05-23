@@ -23,7 +23,7 @@ class Event(db.Model):
     genre = db.Column(db.String(255))
     location = db.Column(db.String(255))
     Amount_of_Tickets = db.Column(db.Integer)
-    Ticket_Status = db.Column(db.String(255))
+    Ticket_Status = db.Column(db.String(255), default='Upcoming')
     Ticket_Price = db.Column(db.Integer)
     image = db.Column(db.String(400))
     
