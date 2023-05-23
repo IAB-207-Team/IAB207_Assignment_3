@@ -7,7 +7,7 @@ class User(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
-    emailid = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
     user = db.relationship('Comment', backref='User')
 
@@ -45,8 +45,11 @@ class Booking(db.Model):
     
     order_id = db.Column(db.Integer, autoincrement=True, primary_key =True)
     order_date = db.Column(db.Date, server_default='CURRENT_TIMESTAMP')
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    email_id = db.Column(db.String(100), nullable=False, db.ForeignKey('users.email'))
     event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
+    card_no = db.Column(db.String(16))
+    expiry = db.Column(db.Date)
+    CVV = db.Column(db.String(3))
 
     user_booking = db.relationship('User', backref='booking')
     event_booking = db.relationship('Event', backref='booking')
