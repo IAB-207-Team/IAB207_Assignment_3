@@ -7,15 +7,19 @@ from flask_wtf.file import FileRequired, FileField, FileAllowed
 ALLOWED_FILE = {'PNG','JPG','png','jpg'}
 
 #Create new event
-class EventForm(FlaskForm):
-  name = StringField('Country', validators=[InputRequired()])
-  description = TextAreaField('Description', 
-            validators=[InputRequired()])
-  image = FileField('Destination Image', validators=[
-    FileRequired(message='Image cannot be empty'),
-    FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
-  currency = StringField('Currency', validators=[InputRequired()])
-  submit = SubmitField("Create")
+class CreateEvent(FlaskForm):
+    event_title = StringField('Event Title', validators=[InputRequired()])
+    date = DateField('Start Date', format='%d/%m/%Y')
+    start_time = TimeField('Start Time')
+    end_time = TimeField('End Time')
+    description = TextAreaField('Description', validators=[InputRequired()])
+    genre = StringField('Genre')
+    location = TextAreaField('Mailing Address', validators=[InputRequired()])
+    amount_of_tickets = IntegerField('Amount')
+    ticket_price =DecimalField('Price', places=2, render_kw={'TIcket Price': 'Enter the ticket price'})
+    image = FileField('Destination Image', validators=[FileRequired(message='Image cannot be empty'), FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
+    submit = SubmitField('Create')
+    
 
 
 #creates the login information
