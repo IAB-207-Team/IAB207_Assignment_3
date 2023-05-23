@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, login_required, current_user, UserMixin
+from .model import events
 
 # Define Event model
 class Event(db.Model):
