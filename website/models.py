@@ -44,7 +44,7 @@ class Booking(db.Model):
     __tablename__ = 'booking'
     
     order_id = db.Column(db.Integer, autoincrement=True, primary_key =True)
-    order_date = db.Column(db.Date)
+    order_date = db.Column(db.Date, server_default='CURRENT_TIMESTAMP')
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
 
