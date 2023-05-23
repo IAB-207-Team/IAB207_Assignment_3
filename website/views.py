@@ -8,6 +8,7 @@ def index():
     event = Event.query.all()    
     return render_template('index.html', event=event)
 
+#Search Funcationality 
 @bp.route('/search')
 def search():
     if request.args['search']:

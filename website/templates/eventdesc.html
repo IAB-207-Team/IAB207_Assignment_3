@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MM Event Details</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  </head>
+  <body>
+    <header class="header">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">
+            <center>
+            <img src="images/mm logo.png" alt="logo" width="100" height="100"
+            class="d-inline-block align-centre"/>
+            </a>
+            </center>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="eventcreate.html" tabindex="-1" aria-disabled="true">Create An Event</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Account
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="index.html">View Account Details</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="userhistory.html">See Purchase History</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+  <center>
+    <h1 class="title display-4 mb-5 text-center">Event Details</h1>
+    <div class="container card">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card">
+            <img src="images/card1.jpg" alt="An event in Brisbane" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Music In the Shadows</h5>
+              <p class="card-text">See the music in the shadows, an interactive experience to be enjoyed by the whole family. You are sure to enjoy this wonderful experience.</p>
+              <ul class="list-unstyled">
+                <li><strong>Location:</strong> QPAC</li>
+                <li><strong>Time:</strong> 7:30pm-9:30pm</li>
+                <li><strong>Date:</strong> 11/11/23</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6" style="padding-left: 90px;">
+          <br>
+          <h2>Ticket Details</h2>
+          <div class="input-group mb-3" style="padding-left: 110px;">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">Choose Ticket Type</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01">
+              <option selected>Choose...</option>
+              <option value="1">Bronze: $20.99</option>
+              <option value="2">Silver: $55.99</option>
+              <option value="3">Gold: $109.99</option>
+            </select>
+          </div>
+          <div class="input-group mb-3" style="padding-left: 120px;">
+            <div class="input-group-append">
+              <label class="input-group-text" for="inputGroupSelect02">Select Ticket Amount</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect02">
+              <option selected>Choose...</option>
+              <option value="1">One (1)</option>
+              <option value="2">Two (2)</option>
+              <option value="3">Three (3)</option>
+              <option value="4">Four (4)</option>
+              <option value="5">Five (5)</option>
+              <option value="6">Six (6)</option>
+              <option value="7">Seven (7)</option>
+              <option value="8">Eight (8)</option>
+              <option value="9">Nine (9)</option>
+            </select>
+          </div>
+          <div class="input-group" style="padding-left: 180px;">
+            <select class="custom-select" id="inputGroupSelect04">
+              <option selected>Select Payment Type</option>
+              <option value="1">PayPal</option>
+              <option value="2">Credit Card</option>
+              <option value="3">Bank Transfer</option>
+            </select>
+          </div>
+            <div class="input-group" style="padding-left: 220px;">
+              <button class="btn btn-outline-secondary" type="button">Purchase</button>
+            </div>
+        </div>
+        </center>
+        <br>
+            <br>
+            <br>
+            <br>
+        <article class="comments">
+          <div>
+            <center>
+              <div>
+                <h1><strong>Comments</strong></h1>
+                <div class="input-group mb-3" style="width: 75%;">
+                <input type="text" class="form-control" id="comment-box" placeholder="Enter comment">
+                <button id="post"><strong>Post</strong></button>
+                <ul id="unordered"></ul>
+              </div>
+              </div>
+            </center>
+          </div>
+        </article>
+        <div class="row justify-content-center">
+          <div class="col-10 col-md-8" style="width: 80%;">
+        <article class="comments">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; background-color: #f4f4f4; padding: 20px; border-radius: 10px; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); ">
+            <p style="color: #999; font-size: 14px; margin: 0 0 10px 0;">Posted on 2nd July 2023</p>
+            <h3 style="font-size: 18px; margin: 0 0 10px 0;">Olof Kajber</h3>
+            <p style="color: #555; font-size: 16px; margin: 0;">"I loved this concert!."</p>
+          </div>
+        </article>
+        <br>
+        <article class="comments">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; background-color: #f4f4f4; padding: 20px; border-radius: 10px; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);">
+            <p style="color: #999; font-size: 14px; margin: 0 0 10px 0;">Posted on 12th July 2023</p>
+            <h3 style="font-size: 18px; margin: 0 0 10px 0;">Finn Anderson</h3>
+            <p style="color: #555; font-size: 16px; margin: 0;">"Super cool, i would reccommend this to anyone!"</p>
+          </div>
+        </article>  
+        <br>
+        <article class="comments">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; background-color: #f4f4f4; padding: 20px; border-radius: 10px; box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);">
+            <p style="color: #999; font-size: 14px; margin: 0 0 10px 0;">Posted on 12th July 2023</p>
+            <h3 style="font-size: 18px; margin: 0 0 10px 0;">Samantha Greizek</h3>
+            <p style="color: #555; font-size: 16px; margin: 0;">"I didn't enjoy it, dont waste your money!"</p>
+          </div>
+        </article>  
+        </div>
+        </div>
+
+
+      
+  </center>
+
+
+
+
+      <!-- Adding the Footer-->
+  <footer class="bg-dark py-5 mt-5">
+    <div class="container-fluid text-light text-center">
+      <p class="display-6 mb-3">MusicMania</p>
+      <small class="text-write-50">&copy; Copyright by Blake Cameron. All rights reserved.</small>
+    </div>
+  </footer>
+
+    
+
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" 
+  integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" 
+  integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
+</body>
+</html>
