@@ -19,7 +19,7 @@ class CreateEvent(FlaskForm):
     image = FileField('Destination Image', validators=[FileRequired(message='Image cannot be empty'), FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
     submit = SubmitField('Create')
     
-class BookEvent(FlaskForm)
+class BookEvent(FlaskForm):
     email_id=StringField("Email Address", validators=[InputRequired('Enter email')])
     card_no = IntegerField('Card Number')
     expiry = DateField('Expiry Date', format= '/%m/%Y')
