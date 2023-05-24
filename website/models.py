@@ -45,7 +45,7 @@ class Booking(db.Model):
     
     order_id = db.Column(db.Integer, autoincrement=True, primary_key =True)
     order_date = db.Column(db.Date, server_default='CURRENT_TIMESTAMP')
-    email_id = db.Column(db.String(100), nullable=False, db.ForeignKey('users.email'))
+    email_id = db.Column(db.String(100), db.ForeignKey('users.email'))
     event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
     card_no = db.Column(db.String(16))
     expiry = db.Column(db.Date)
