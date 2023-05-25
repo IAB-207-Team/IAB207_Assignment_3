@@ -17,7 +17,7 @@ def register():
             #get username, password and email from the form
             uname =register.user_name.data
             pwd = register.password.data
-            email=register.email_id.data
+            email=register.email.data
             #check if a user exists
             u1 = User.query.filter_by(name=uname).first()
             if u1:
@@ -43,7 +43,7 @@ def login(): #view function
      login_form = LoginForm()
      error=None
      if(login_form.validate_on_submit()==True):
-         email_id = login_form.email_id.data
+         email_id = login_form.email.data
          password = login_form.password.data
          user = User.query.filter_by(name=email_id).first()
          if user is None:
