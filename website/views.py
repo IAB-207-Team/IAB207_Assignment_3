@@ -1,11 +1,11 @@
 from flask import Blueprint, render_template, request, redirect,url_for
-from .models import Event
+from .models import booking
 
 bp = Blueprint('main', __name__)
 
 @bp.route('/')
 def index():
-    event = Event.query.all()    
+    event = booking.query.all()    
     return render_template('index.html', event=event)
 
 #Search Funcationality 
@@ -14,7 +14,7 @@ def search():
     if request.args['search']:
         print(request.args['search'])
         dest = "%" + request.args['search'] + '%'
-        event = Events.query.filter(Event.description.like(even)).all()
+        event = booking.query.filter(booking.description.like(booking)).all()
         return render_template('index.html', event=event)
     else:
         return redirect(url_for('main.index'))
