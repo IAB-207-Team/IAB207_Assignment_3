@@ -17,7 +17,7 @@ def register():
             #get username, password and email from the form
             uname =register.user_name.data
             pwd = register.password.data
-            email=register.email.data
+            email = register.email.data
             #check if a user exists
             u1 = User.query.filter_by(name=uname).first()
             if u1:
@@ -43,9 +43,9 @@ def login(): #view function
      login_form = LoginForm()
      error=None
      if(login_form.validate_on_submit()==True):
-         email_id = login_form.email.data
+         email = login_form.email_id.data
          password = login_form.password.data
-         user = User.query.filter_by(name=email_id).first()
+         user = User.query.filter_by(name=email).first()
          if user is None:
              error='Incorrect credentials supplied'
          elif not check_password_hash(user.password_hash, password): # takes the hash and password
