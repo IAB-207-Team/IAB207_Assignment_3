@@ -29,7 +29,7 @@ class BookEvent(FlaskForm):
 
 #creates the login information
 class LoginForm(FlaskForm):
-    email_id=StringField("Email Address", validators=[InputRequired('Enter email')])
+    email_id=StringField("User Name", validators=[InputRequired('Enter User Name')])
     password=PasswordField("Password", validators=[InputRequired('Enter user password')])
     submit = SubmitField("Login")
 
