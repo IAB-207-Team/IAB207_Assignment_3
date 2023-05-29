@@ -35,9 +35,16 @@
                               <li><a href="event_booking_history.html"style="color: white;">Booking History</a></li>
                           </ul>
                           <ul class="nav navbar-nav navbar-right" >
-                              <li ><a href="#" style="color: white;"><span class="glyphicon glyphicon-log-in" style="color: white;"></span> Login</a></li>
-                              <li><a href="#" style="color: white;"><span class="glyphicon glyphicon-log-in" style="color: white;"></span> Sign Up</a></li>
+                            {% if current_user.is_authenticated %}
+                              <li ><a href="#" style="color: white;"><span class="glyphicon glyphicon-log-in disabled" style="color: white;"></span>Welcome {{current_user.name}}</a></li>
+                              <li ><a href="{{ url_for('auth.logout') }}" style="color: white;"><span class="glyphicon glyphicon-log-in" style="color: white;"></span> Log Out</a></li>
+                            {% else %}
+                              <li ><a href="{{ url_for('auth.login') }}" style="color: white;"><span class="glyphicon glyphicon-log-in" style="color: white;"></span> Login</a></li>
+                              <li><a href="{{ url_for('auth.register') }}" style="color: white;"><span class="glyphicon glyphicon-log-in" style="color: white;"></span> Sign Up</a></li>
+                            {% endif %}
                           </ul>
+
+
                           <form class="navbar-form navbar-right" role="search" style = "background-color: black;" method="GET" >
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" >
                             <button class="btn btn-outline-success" type="submit" style = "color: black;">Search</button>
