@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request,redirect,url_for,flash
-from .forms import LoginForm, RegisterForm, CreateEventForm, CommentForm
+from .forms import LoginForm, RegisterForm, CreateEvent, CommentForm
 #new imports:
 from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash,check_password_hash
@@ -78,7 +78,7 @@ def show(id):
 @login_required
 def create():
   print('Method type: ', request.method)
-  form = CreateEventForm()
+  form = CreateEvent()
   if form.validate_on_submit():
     #call the function that checks and returns image
     db_file_path=check_upload_file(form)
