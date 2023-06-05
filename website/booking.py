@@ -1,50 +1,68 @@
-from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, DateField, TimeField, IntegerField, DecimalField
-from wtforms.validators import InputRequired, Length, Email, EqualTo
-from flask_wtf.file import FileRequired, FileField, FileAllowed
+from flask import Flask, render_template, request, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager, login_required, current_user, UserMixin
 
-ALLOWED_FILE = {'PNG','JPG','png','jpg'}
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///event_management.db'
+app.config['SECRET_KEY'] = 'your-secret-key'
 
-#Create new event
-class CreateEvent(FlaskForm):
-    event_title = StringField('Event Title', validators=[InputRequired()])
-    date = DateField('Start Date', format='%Y-%m-%d')
-    start_time = TimeField('Start Time')
-    end_time = TimeField('End Time')
-    description = TextAreaField('Description', validators=[InputRequired()])
-    genre = StringField('Genre')
-    location = TextAreaField('Mailing Address', validators=[InputRequired()])
-    amount_of_tickets = IntegerField('Amount')
-    ticket_price =IntegerField('Price', render_kw={'TIcket Price': 'Enter the ticket price'})
-    image = FileField('Destination Image',validators=[FileRequired(message='Image cannot be empty'), FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
-    submit = SubmitField('Create')
-    
-class BookEvent(FlaskForm):
-    email_id=StringField("Email Address", validators=[InputRequired('Enter email')])
-    card_no = IntegerField('Card Number')
-    expiry = DateField('Expiry Date', format='%m/%Y')
-    CVV =  IntegerField('Security Code')
-    
-    #We are going to have to make sure that the event idea automatically gets added to the booking
+db = SQLAlchemy(app)
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
 
-#creates the login information
-class LoginForm(FlaskForm):
-    email_id=StringField("User Name", validators=[InputRequired('Enter User Name')])
-    password=PasswordField("Password", validators=[InputRequired('Enter user password')])
-    submit = SubmitField("Login")
+# Define Event model
+class Event(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    ticket_count = db.Column(db.Integer, nullable=False)
+    status = db.Column(db.String(20), nullable=False)
 
- # this is the registration form
-class RegisterForm(FlaskForm):
-    user_name=StringField("User Name", validators=[InputRequired()])
-    email_id = StringField("Email Address", validators=[Email("Please enter a valid email")])
-    #linking two fields - password should be equal to data entered in confirm
-    password=PasswordField("Password", validators=[InputRequired(),
-                  EqualTo('confirm', message="Passwords should match")])
-    confirm = PasswordField("Confirm Password")
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
-    #submit button
-    submit = SubmitField("Register")
+@app.route('/')
+def home():
+    events = Event.query.all()
+    return render_template('index.html', events=events)
 
-class CommentForm(FlaskForm):
-    text = TextAreaField("Comment", validators=[InputRequired(), Length(min=10, max=200, message="Comment should be between 10 and 200 characters")]) 
-    submit = SubmitField("Add Comment")
+@app.route('/events/<int:event_id>', methods=['GET'])
+def event_details(event_id):
+    event = Event.query.get(event_id)
+
+    if event is None:
+        return 'Event not found', 404
+
+    return render_template('event_details.html', event=event)
+
+@app.route('/events/<int:event_id>/book', methods=['GET', 'POST'])
+@login_required
+def book_event(event_id):
+    event = Event.query.get(event_id)
+
+    if event is None:
+        return 'Event not found', 404
+
+    if request.method == 'POST':
+        if event.ticket_count == 0:
+            event.status = 'Sold Out'
+            db.session.commit()
+            return 'Event is sold out'
+
+        quantity = int(request.form['quantity'])
+        if quantity > event.ticket_count:
+            return 'Order cannot be placed. The quantity exceeds the available tickets.'
+
+        new_ticket_count = event.ticket_count - quantity
+        event.ticket_count = new_ticket_count
+        if new_ticket_count == 0:
+            event.status = 'Sold Out'
+        db.session.commit()
+
+        return 'Ticket booked successfully'
+
+    return render_template('book_event.html', event=event)
+
+if __name__ == '__main__':
+    db.create_all()
+    app.run(debug=True)
