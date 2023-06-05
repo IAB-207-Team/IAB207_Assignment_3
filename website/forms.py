@@ -22,6 +22,7 @@ class CreateEvent(FlaskForm):
 class BookEvent(FlaskForm):
     email_id=StringField("Email Address", validators=[InputRequired('Enter email')])
     card_no = IntegerField('Card Number')
+    quantity = IntegerField('Amount')
     expiry = DateField('Expiry Date', format='%m/%Y')
     CVV =  IntegerField('Security Code')
     
