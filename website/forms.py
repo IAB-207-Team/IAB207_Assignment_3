@@ -8,7 +8,7 @@ ALLOWED_FILE = {'PNG','JPG','png','jpg'}
 #Create new event
 class CreateEvent(FlaskForm):
     event_title = StringField('Event Title', validators=[InputRequired()])
-    date = DateField('Start Date', format='%d/%m/%Y')
+    date = DateField('Start Date', format='%m/%d/%Y')
     start_time = TimeField('Start Time')
     end_time = TimeField('End Time')
     description = TextAreaField('Description', validators=[InputRequired()])
