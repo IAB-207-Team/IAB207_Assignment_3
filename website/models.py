@@ -50,6 +50,7 @@ class Booking(db.Model):
     card_no = db.Column(db.String(16))
     expiry = db.Column(db.Date)
     CVV = db.Column(db.String(3))
+    quantity = db.Column(db.Integer)
 
     user_booking = db.relationship('User', backref='booking')
     event_booking = db.relationship('Event', backref='booking')
