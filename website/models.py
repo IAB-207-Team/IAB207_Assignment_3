@@ -1,50 +1,61 @@
-from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, DateField, TimeField, IntegerField, DecimalField
-from wtforms.validators import InputRequired, Length, Email, EqualTo
-from flask_wtf.file import FileRequired, FileField, FileAllowed
+from . import db
+from datetime import datetime
+from flask_login import UserMixin
 
-ALLOWED_FILE = {'PNG','JPG','png','jpg'}
+class User(db.Model, UserMixin):
+    __tablename__ = 'users'
 
-#Create new event
-class CreateEvent(FlaskForm):
-    event_title = StringField('Event Title', validators=[InputRequired()])
-    date = DateField('Start Date', format='%Y-%m-%d')
-    start_time = TimeField('Start Time')
-    end_time = TimeField('End Time')
-    description = TextAreaField('Description', validators=[InputRequired()])
-    genre = StringField('Genre')
-    location = TextAreaField('Mailing Address', validators=[InputRequired()])
-    amount_of_tickets = IntegerField('Amount')
-    ticket_price =IntegerField('Price', render_kw={'TIcket Price': 'Enter the ticket price'})
-    image = FileField('Destination Image',validators=[FileRequired(message='Image cannot be empty'), FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
-    submit = SubmitField('Create')
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), nullable=False)
+    password_hash = db.Column(db.String(255), nullable=False)
+    user = db.relationship('Comment', backref='User')
+
+class Event(db.Model):
+    __tablename__ = 'events'
+
+    id = db.Column(db.Integer, primary_key=True)
+    event_title = db.Column(db.String(80))
+    date = db.Column(db.Date)
+    start_time = db.Column(db.Time, nullable=False)
+    end_time = db.Column(db.Time, nullable=False)
+    description = db.Column(db.String(255))
+    genre = db.Column(db.String(255))
+    location = db.Column(db.String(255))
+    amount_of_tickets = db.Column(db.Integer)
+    ticket_status = db.Column(db.String(255), default='Upcoming')
+    ticket_price = db.Column(db.Integer)
+    image = db.Column(db.String(400))
     
-class BookEvent(FlaskForm):
-    email_id=StringField("Email Address", validators=[InputRequired('Enter email')])
-    card_no = IntegerField('Card Number')
-    expiry = DateField('Expiry Date', format='%m/%Y')
-    CVV =  IntegerField('Security Code')
+    comments = db.relationship('Comment', backref='Event')
+    event_booking = db.relationship('Booking', backref='Event')
+
+class Comment(db.Model):
+    __tablename__ = 'comments'
+
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.String(400))
+    created_at = db.Column(db.DateTime, server_default='CURRENT_TIMESTAMP')
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
+
+
+class Booking(db.Model):
+    __tablename__ = 'booking'
     
-    #We are going to have to make sure that the event idea automatically gets added to the booking
+    order_id = db.Column(db.Integer, autoincrement=True, primary_key =True)
+    order_date = db.Column(db.Date, server_default='CURRENT_TIMESTAMP')
+    email_id = db.Column(db.String(100), db.ForeignKey('users.email'))
+    event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
+    card_no = db.Column(db.String(16))
+    expiry = db.Column(db.Date)
+    CVV = db.Column(db.String(3))
 
-#creates the login information
-class LoginForm(FlaskForm):
-    email_id=StringField("User Name", validators=[InputRequired('Enter User Name')])
-    password=PasswordField("Password", validators=[InputRequired('Enter user password')])
-    submit = SubmitField("Login")
+    user_booking = db.relationship('User', backref='booking')
+    event_booking = db.relationship('Event', backref='booking')
 
- # this is the registration form
-class RegisterForm(FlaskForm):
-    user_name=StringField("User Name", validators=[InputRequired()])
-    email_id = StringField("Email Address", validators=[Email("Please enter a valid email")])
-    #linking two fields - password should be equal to data entered in confirm
-    password=PasswordField("Password", validators=[InputRequired(),
-                  EqualTo('confirm', message="Passwords should match")])
-    confirm = PasswordField("Confirm Password")
+    def __repr__(self):
+        return "<Comment: {}>".format(self.text)
 
-    #submit button
-    submit = SubmitField("Register")
-
-class CommentForm(FlaskForm):
-    text = TextAreaField("Comment", validators=[InputRequired(), Length(min=10, max=200, message="Comment should be between 10 and 200 characters")]) 
-    submit = SubmitField("Add Comment")
+    def __repr__(self):
+        return "<Comment: {}>".format(self.text)
