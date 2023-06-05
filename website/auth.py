@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request,redirect,url_for,flash
-from .forms import LoginForm, RegisterForm, CreateEvent, CommentForm
+from .forms import LoginForm, RegisterForm, CreateEvent, CommentForm, BookEvent
 #new imports:
 from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash,check_password_hash
@@ -65,7 +65,7 @@ def login(): #view function
 @login_required
 def logout():
     logout_user()
-    return render_template('logoutscreen.html', heading='Logged Out')
+    return 'You have been logged out'
 
 @bp.route('/<id>')
 def show(id):
@@ -82,7 +82,7 @@ def create():
   if form.validate_on_submit():
     #call the function that checks and returns image
     db_file_path=check_upload_file(form)
-    destination=Event(name=form.event_title.data, date=form.date.data, start_time=form.start_time.data,end_time=form.end_time.data, description=form.description.data, genre=form.genre.data, amount_of_tickets=form.amount_of_tickets.data, ticket_price=form.ticket_price.data,image=form.image.data)
+    destination=Event(event_title=form.event_title.data, date=form.date.data, start_time=form.start_time.data,end_time=form.end_time.data, description=form.description.data, genre=form.genre.data, location=form.location.data, amount_of_tickets=form.amount_of_tickets.data, ticket_price=form.ticket_price.data,image=db_file_path)
     # add the object to the db session
     db.session.add(destination)
     # commit to the database
@@ -90,7 +90,7 @@ def create():
     print('Successfully created new travel destination', 'success')
     #Always end with redirect when form is valid
     return redirect(url_for('auth.create'))
-  return render_template('eventcreate.html', form=form)
+  return render_template('user.html', form=form)
 
 def check_upload_file(form):
   #get file data from form  
@@ -99,9 +99,9 @@ def check_upload_file(form):
   #get the current path of the module file… store image file relative to this path  
   BASE_PATH=os.path.dirname(__file__)
   #upload file location – directory of this file/static/image
-  upload_path=os.path.join(BASE_PATH,'static/image',secure_filename(filename))
+  upload_path=os.path.join(BASE_PATH,'static\images',secure_filename(filename))
   #store relative path in DB as image location in HTML is relative
-  db_upload_path='/static/image/' + secure_filename(filename)
+  db_upload_path='\static\images\\' + secure_filename(filename)
   #save the file and return the db upload path  
   fp.save(upload_path)
   return db_upload_path
@@ -127,4 +127,40 @@ def comment(destination):
       print('Your comment has been added', 'success') 
     # using redirect sends a GET request to destination.show
     return redirect(url_for('auth.show', id=destination))
+
+
+
+@bp.route('/events', methods=['GET', 'POST'])
+
+def book_event(event_id):
+    form = BookEvent()
+    event_id = form.id.data
+    if form.validate_on_submit():
+    #read the comment from the form
+        book = BookEvent(email=form.email.id.data, card_no = form.card_no.data, expiry = form.expiry.data, CVV = form.CVV.data)
+    
+
+    if book is None:
+        return 'Event not found', 404
+
+    if request.method == 'POST' 'GET':
+        if Event.ticket_count == 0:
+            Event.status = 'Sold Out'
+            db.session.commit()
+            return 'Event is sold out'
+
+        quantity = int(request.form['quantity'])
+        if quantity > Event.ticket_count:
+            return 'Order cannot be placed. The quantity exceeds the available tickets.'
+
+        new_ticket_count = Event.ticket_count - quantity
+        Event.ticket_count = new_ticket_count
+        if new_ticket_count == 0:
+            Event.status = 'Sold Out'
+            db.session.commit()
+
+        else:
+            return redirect(url_for('booking.book_event'))
+    return render_template('book_event.html', event=Event)
+
 
