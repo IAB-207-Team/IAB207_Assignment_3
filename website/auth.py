@@ -163,4 +163,35 @@ def book_event(event_id):
             return redirect(url_for('booking.book_event'))
     return render_template('book_event.html', event=Event)
 
+@bp.route('/<id>/update', methods=['GET', 'POST'])
+@login_required
+def update(id):
+    chosenevent = Event.query.filter_by(id=id).first()
 
+    form = UpdateEvent(obj=chosenevent)
+    if form.validate_on_submit():
+        # Call the function that checks and returns image
+        db_file_path = check_upload_file(form)
+        form.populate_obj(chosenevent)
+        # Using https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/queries/
+        chosenevent.event_title = form.event_title.data
+        chosenevent.date = form.date.data
+        chosenevent.start_time = form.start_time.data
+        chosenevent.end_time = form.end_time.data
+        chosenevent.description = form.description.data
+        chosenevent.genre = form.genre.data
+        chosenevent.location = form.location.data
+        chosenevent.amount_of_tickets = form.amount_of_tickets.data
+        chosenevent.ticket_price = form.ticket_price.data
+        chosenevent.image = db_file_path
+        chosenevent.ticket_status = form.ticket_status.data
+        
+        # Commit the changes to the database
+        db.session.add(chosenevent)
+        db.session.commit()
+
+        print('Successfully updated event details', 'success')
+        # Always end with a redirect when form is valid
+        return redirect(url_for('main.index'))
+
+    return render_template('user.html', form=form)
