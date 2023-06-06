@@ -65,7 +65,7 @@ def login(): #view function
 @login_required
 def logout():
     logout_user()
-    return 'You have been logged out'
+    return render_template('logoutscreen.html')
 
 @bp.route('/<id>')
 def show(id):
