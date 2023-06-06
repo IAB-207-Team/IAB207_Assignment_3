@@ -49,3 +49,18 @@ class RegisterForm(FlaskForm):
 class CommentForm(FlaskForm):
     text = TextAreaField("Comment", validators=[InputRequired(), Length(min=10, max=200, message="Comment should be between 10 and 200 characters")]) 
     submit = SubmitField("Add Comment")
+    
+class UpdateEvent(FlaskForm):
+    state_pairs = ['Open', 'Cancelled']
+    event_title = StringField('Event Title', validators=[InputRequired()])
+    date = DateField('Start Date', format='%Y-%m-%d')
+    start_time = TimeField('Start Time')
+    end_time = TimeField('End Time')
+    description = TextAreaField('Description', validators=[InputRequired()])
+    genre = StringField('Genre')
+    location = TextAreaField('Mailing Address', validators=[InputRequired()])
+    amount_of_tickets = IntegerField('Amount')
+    ticket_price =IntegerField('Price', render_kw={'TIcket Price': 'Enter the ticket price'})
+    image = FileField('Destination Image', validators=[FileRequired(message='Image cannot be empty'), FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
+    ticket_status = SelectField(label='Status', choices=state_pairs)
+    submit = SubmitField('Create')
