@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request,redirect,url_for,flash
-from .forms import LoginForm, RegisterForm, CreateEvent, CommentForm, BookEvent
+from .forms import LoginForm, RegisterForm, CreateEvent, CommentForm, BookEvent, UpdateEvent
 #new imports:
 from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash,check_password_hash
@@ -65,14 +65,18 @@ def login(): #view function
 @login_required
 def logout():
     logout_user()
-    return render_template('logoutscreen.html', heading='Logged Out')
+    return 'You have been logged out'
 
 @bp.route('/<id>')
 def show(id):
-    destination = Event.query.filter_by(id=id).first()
+    events = Event.query.filter_by(id=id).first()
     # create the comment form
     cform = CommentForm()    
-    return render_template('eventdesc.html', destination=destination, form=cform)
+    if cform.validate_on_submit():
+        print('Successfully created new travel destination', 'success')
+        #Always end with redirect when form is valid
+        return redirect(url_for('auth.show'))
+    return render_template('eventdesc.html', Event=events, form=cform)
 
 @bp.route('/create', methods = ['GET', 'POST'])
 @login_required
@@ -106,17 +110,17 @@ def check_upload_file(form):
   fp.save(upload_path)
   return db_upload_path
 
-@bp.route('/<destination>/comment', methods = ['GET', 'POST'])  
+@bp.route('/<id>/comment', methods = ['GET', 'POST'])  
 @login_required
-def comment(destination):  
+def comment(id):  
     form = CommentForm()  
     #get the destination object associated to the page and the comment
-    destination_obj = Event.query.filter_by(id=destination).first()  
+    event_obj = Event.query.filter_by(id=id).first()  
     if form.validate_on_submit():  
       #read the comment from the form
       comment = Comment(text=form.text.data,  
-                        destination=destination_obj,
-                        user=current_user) 
+                        Event=event_obj,
+                        User=current_user) 
       #here the back-referencing works - comment.destination is set
       # and the link is created
       db.session.add(comment) 
@@ -126,7 +130,7 @@ def comment(destination):
       #flash('Your comment has been added', 'success')  
       print('Your comment has been added', 'success') 
     # using redirect sends a GET request to destination.show
-    return redirect(url_for('auth.show', id=destination))
+    return redirect(url_for('auth.show', id=id))
 
 
 
@@ -134,7 +138,6 @@ def comment(destination):
 
 def book_event(event_id):
     form = BookEvent()
-    event_id = form.id.data
     if form.validate_on_submit():
     #read the comment from the form
         book = BookEvent(email=form.email.id.data, card_no = form.card_no.data, expiry = form.expiry.data, CVV = form.CVV.data)
@@ -163,7 +166,8 @@ def book_event(event_id):
             return redirect(url_for('booking.book_event'))
     return render_template('book_event.html', event=Event)
 
-@bp.route('/<id>/update', methods=['GET', 'POST'])
+
+@bp.route('/update/<id>', methods=['GET', 'POST'])
 @login_required
 def update(id):
     chosenevent = Event.query.filter_by(id=id).first()
