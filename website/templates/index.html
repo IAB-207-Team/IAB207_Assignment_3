@@ -117,6 +117,23 @@
 </div>
 <br>
 <br>
+
+<div class=container>
+         <div class="card-group">
+            {% for Event in events %}
+            <div class="card mx-3">
+               <img class="card-img-top"
+                  src={{Event.image}} alt="Event Photo">
+               <div class="card-body">
+                  <h5 class="card-title">{{Event.event_title}}</h5>
+                  <p class="card-text">{{Event.description}}</p>
+               </div>
+               <div class="card-footer"><a href = "{{url_for('auth.show', id=Event.id)}}" class ="btn btn-danger"> View Details </a></div>
+            </div>
+            {% endfor %}
+         </div>
+      </div>
+   <div>
 </body>
 
 
