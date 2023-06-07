@@ -47,6 +47,7 @@ class Booking(db.Model):
     order_date = db.Column(db.Date, server_default='CURRENT_TIMESTAMP')
     email_id = db.Column(db.String(100), db.ForeignKey('users.email'))
     event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
+    total_price = db.Column(db.Integer)
     card_no = db.Column(db.String(16))
     expiry = db.Column(db.Date)
     CVV = db.Column(db.String(3))
