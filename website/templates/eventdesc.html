@@ -29,7 +29,7 @@
                 <small class="font-weight-bold text-muted">Stay 2 nights</small>  
                 <h5 class="mt-0">{{Event.event_title}}</h5>  
                 <p>{{Event.description}}</p>  
-                <a href="#" class="btn btn-danger">Book Now</a>  
+                <a href="{{ url_for('auth.update', id=Event.id) }}" class="btn btn-danger">Update Event</a>  
               </div>  
             </div>  
           </div>  
