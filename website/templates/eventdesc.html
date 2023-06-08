@@ -10,23 +10,17 @@
         <div class="float-left">  
           <h1 class="mb-0">{{Event.event_title}}</h1>  
         </div>  
- 
-        <div class="float-right text-right">  
-          <p class="mb-0">1 AUD equals</p>  
-          <h2 id="exchange-rate">0.62 EUR</h1>  
-        </div>  
-      </div>  
-    </div>  
- 
+  </div>
+  </div>
+    
     <!-- Destination --> 
     <div class="row">  
       <div class="col-md-12">  
         <div class="card my-3">  
           <div class="card-body">  
             <div class="media">  
-              <img class="align-self-start mr-3" src="{{Event.image}}">  
-              <div class="media-body">  
-                <small class="font-weight-bold text-muted">Stay 2 nights</small>  
+              <img class="center-block" src="{{Event.image}}" style="width:640px; height: 400px; justify-content: center;">  
+              <div class="media-body">    
                 <h5 class="mt-0">{{Event.event_title}}</h5>  
                 <p>{{Event.description}}</p>  
                 <a href="{{ url_for('auth.update', id=Event.id) }}" class="btn btn-danger">Update Event</a>  
@@ -44,7 +38,7 @@
     <!-- Comments -->  
     <div class="row">  
       <div class="col-md-12">  
-        <h2>Comments</h1>  
+        <h2>Comments</h2>  
       </div>  
     </div>  
  
