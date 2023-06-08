@@ -13,7 +13,7 @@
   </div>
   </div>
     
-    <!-- Destination --> 
+    <!-- Event --> 
     <div class="row">  
       <div class="col-md-12">  
         <div class="card my-3">  
@@ -21,15 +21,25 @@
             <div class="media">  
               <img class="center-block" src="{{Event.image}}" style="width:640px; height: 400px; justify-content: center;">  
               <div class="media-body">    
-                <h5 class="mt-0">{{Event.event_title}}</h5>  
-                <p>{{Event.description}}</p>  
+                <h5 class="mt-0">{{Event.event_title}} - {{Event.ticket_status}} </h5>  
+                <p><b>Event Description </b></p>
+                <p>{{Event.genre}} - {{Event.description}}</p> 
+                <p><b>Artist </b></p>
+                <p>{{Event.artist}}</p>  
+                <p><b>Date and Time </b></p>
+                <p>{{Event.date}}</p>  
+                <p>{{Event.start_time}} - {{Event.end_time}}</p> 
+                <p><b>Location </b></p>
+                <p>{{Event.location}}</p> 
+                <p><b>Ticket Price</b></p> 
+                <p>$ {{Event.ticket_price}}</p>  
                 <a href="{{ url_for('auth.update', id=Event.id) }}" class="btn btn-danger">Update Event</a>  
               </div>  
             </div>  
           </div>  
         </div>  
       </div>  
-    </div>     
+    </div>      
  
    
  
