@@ -33,7 +33,8 @@
                 <p>{{Event.location}}</p> 
                 <p><b>Ticket Price</b></p> 
                 <p>$ {{Event.ticket_price}}</p>  
-                <a href="{{ url_for('auth.update', id=Event.id) }}" class="btn btn-danger">Update Event</a>  
+                <a href="{{ url_for('auth.update', id=Event.id) }}" class="btn btn-danger">Update Event</a>
+                <a href="#" class="btn btn-primary" style="display: flex; justify-content: center; ">Book Tickets</a>  
               </div>  
             </div>  
           </div>  
