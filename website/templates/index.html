@@ -11,25 +11,24 @@
  </header>
 {% endblock %}
 
-{% block content %}   
-            <main id="main">
-               <div class="events-grid">
-                 <h4 style="margin: auto;">Upcoming Events</h4>
-                 <br>
-               <section class="event" style="display: flex; justify-content: center;">
-                  <div class="card-group">
-                     {% for Event in events %}
-                     <div class="card mx-3">
-                     <article class="event-detail" >
-                   <img src={{Event.image}} alt="Event Photo" style="width:280px; height: 200px; "/>
-                   <div class="card-body">
-                     <h5 class="card-title">{{Event.event_title}}</h5>
-                     <p class="card-text">{{Event.description}}</p>
-                  </div>
-                   <div>
-                     <a href="{{url_for('auth.show', id=Event.id)}}" class="btn btn-primary" style="display: flex; justify-content: center; ">More Details</a>
-                   </div>
-                 </article>
+{% block content %}
+                 <main id="main">
+                  <div class="events-grid">
+                    <h4 style="margin: auto;">Upcoming Events</h4>
+                    <br>
+                  <section class="event" style="display: flex; justify-content: center;">
+                    {% for Event in events %}
+                    <article class="event-detail" >
+                      <img src={{Event.image}} alt="Event Photo" style="width:280px; height: 200px; "/>
+                      <div>
+                        <h3><strong>{{Event.event_title}}</strong></h3>
+                        <p><strong>Artist:</strong>{{Event.artist}}</p>
+                        <p><strong>Date:</strong>{{Event.date}}</p>
+                        <p><strong>Time:</strong>{{Event.start_time}}</p>
+                        <p><strong>Status:</strong>{{Event.ticket_status}}</p>
+                        <a href="{{url_for('auth.show', id=Event.id)}}" class="btn btn-primary" style="display: flex; justify-content: center; ">More Details</a>
+                      </div>
+                    </article>
             {% endfor %}
          </div>
       </div>
