@@ -2,15 +2,17 @@ from . import db
 from datetime import datetime
 from flask_login import UserMixin
 
+# Creating the Users table that will store user information
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), nullable=False)
-    password_hash = db.Column(db.String(255), nullable=False)
-    user = db.relationship('Comment', backref='User')
+    password_hash = db.Column(db.String(255), nullable=False) # Hashing the password when inserted to ensure that security is achieved
+    user = db.relationship('Comment', backref='User') # Relationship created with the comments table
 
+# Database table that will store the event information
 class Event(db.Model):
     __tablename__ = 'events'
 
@@ -27,17 +29,18 @@ class Event(db.Model):
     ticket_price = db.Column(db.Integer)
     image = db.Column(db.String(400))
     
-    comments = db.relationship('Comment', backref='Event')
-    event_booking = db.relationship('Booking', backref='Event')
+    comments = db.relationship('Comment', backref='Event') # Creates a relationship with the comment table
+    event_booking = db.relationship('Booking', backref='Event') # Creates relationship with the booking table to keep data consistent
 
+ # Comments table that stores information around user commenting on events
 class Comment(db.Model):
     __tablename__ = 'comments'
 
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(400))
-    created_at = db.Column(db.DateTime, server_default='CURRENT_TIMESTAMP')
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
+    created_at = db.Column(db.DateTime, server_default='CURRENT_TIMESTAMP') # Takes the current timestamp to ensure that the time the comment was posted is accurate
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id')) # creates foreign keys with the relationships created in the tables before
+    event_id = db.Column(db.Integer, db.ForeignKey('events.id')) 
 
 
 class Booking(db.Model):
@@ -54,9 +57,6 @@ class Booking(db.Model):
 
     user_booking = db.relationship('User', backref='booking')
     event_booking = db.relationship('Event', backref='booking')
-
-    def __repr__(self):
-        return "<Comment: {}>".format(self.text)
 
     def __repr__(self):
         return "<Comment: {}>".format(self.text)
