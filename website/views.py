@@ -3,10 +3,11 @@ from .models import Event
 
 bp = Blueprint('main', __name__)
 
+# allows for events to be viewed on the index page
 @bp.route('/')
 def index():
-    events = Event.query.all()    
-    return render_template('index.html', events=events)
+    events = Event.query.all()   # Queries all information in the Event table
+    return render_template('index.html', events=events) #Renders the template with the queried information from Event and allows for it to be displayed
 
 #Search Funcationality 
 @bp.route('/search')
