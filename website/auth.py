@@ -61,7 +61,7 @@ def login(): #view function
              flash(error)
      return render_template('user.html', form=login_form, heading='Login')
 
-@bp.route('/logout')
+@bp.route('/logout') # Creates the function that is used when a user wants to log out
 @login_required
 def logout():
     logout_user()
@@ -114,14 +114,14 @@ def check_upload_file(form):
 @login_required
 def comment(id):  
     form = CommentForm()  
-    #get the destination object associated to the page and the comment
+    #get an events object associated to the page and the comment
     event_obj = Event.query.filter_by(id=id).first()  
     if form.validate_on_submit():  
       #read the comment from the form
       comment = Comment(text=form.text.data,  
                         Event=event_obj,
                         User=current_user) 
-      #here the back-referencing works - comment.destination is set
+      #here the back-referencing works - comment.Event is set
       # and the link is created
       db.session.add(comment) 
       db.session.commit() 
