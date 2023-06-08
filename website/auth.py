@@ -175,7 +175,6 @@ def update(id):
     form = UpdateEvent(obj=chosenevent)
     if form.validate_on_submit():
         # Call the function that checks and returns image
-        db_file_path = check_upload_file(form)
         form.populate_obj(chosenevent)
         # Using https://flask-sqlalchemy.palletsprojects.com/en/3.0.x/queries/
         chosenevent.event_title = form.event_title.data
@@ -187,7 +186,6 @@ def update(id):
         chosenevent.location = form.location.data
         chosenevent.amount_of_tickets = form.amount_of_tickets.data
         chosenevent.ticket_price = form.ticket_price.data
-        chosenevent.image = db_file_path
         chosenevent.ticket_status = form.ticket_status.data
         
         # Commit the changes to the database
