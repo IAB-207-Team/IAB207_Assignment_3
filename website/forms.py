@@ -61,6 +61,5 @@ class UpdateEvent(FlaskForm):
     location = TextAreaField('Mailing Address', validators=[InputRequired()])
     amount_of_tickets = IntegerField('Amount')
     ticket_price =IntegerField('Price', render_kw={'TIcket Price': 'Enter the ticket price'})
-    image = FileField('Destination Image', validators=[FileRequired(message='Image cannot be empty'), FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
     ticket_status = SelectField(label='Status', choices=state_pairs)
     submit = SubmitField('Create')
