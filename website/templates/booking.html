@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h2>Ticket Booking</h2>
+    <hr>
+    <form method="POST" action="{{ url_for('main.booking', id=event_id) }}">
+      <div class="form-group">
+        <label for="quantity">Quantity:</label>
+        <input type="number" class="form-control" id="quantity" name="quantity" required>
+        {% if sold_out %}
+          <small class="form-text text-muted">Sorry, this event is sold out.</small>
+        {% elif exceeding_limit %}
+          <small class="form-text text-muted">The quantity exceeds the available tickets.</small>
+        {% endif %}
+      </div>
+      <button type="submit" class="btn btn-primary">Buy Ticket</button>
+    </form>
+  </div>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+{% endblock %}
