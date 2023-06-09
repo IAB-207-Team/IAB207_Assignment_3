@@ -3,7 +3,7 @@ from .forms import LoginForm, RegisterForm, CreateEvent, CommentForm, BookEvent,
 #new imports:
 from flask_login import login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash,check_password_hash
-from .models import User, Event, Comment
+from .models import User, Event, Comment, Booking
 import os
 from werkzeug.utils import secure_filename
 from . import db
