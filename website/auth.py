@@ -56,7 +56,7 @@ def login(): #view function
              login_user(user)
              nextp = request.args.get('next') #this gives the url from where the login page was accessed
              print(nextp)
-             return render_template('index.html', form=login_form, heading='Login')
+             return redirect(url_for('main.index'))
          else:
              flash(error)
      return render_template('user.html', form=login_form, heading='Login')
@@ -135,11 +135,11 @@ def comment(id):
 
 
 @bp.route('/book_tickets/<id>', methods=['GET', 'POST'])
-def book_event(id):  
-    form = BookEvent()  
+def book_event(id):
+    form = BookEvent()
     #get an events object associated to the page and the comment
-    event_obj = Event.query.filter_by(id=id).first()  
-    if form.validate_on_submit():  
+    event_obj = Event.query.filter_by(id=id).first()
+    if form.validate_on_submit():
       #read the comment from the form
       booking = Booking( Event = event_obj,
             email_id = form.email_id.data,
@@ -150,14 +150,12 @@ def book_event(id):
             CVV = form.CVV.data) 
       #here the back-referencing works - comment.Event is set
       # and the link is created
-      db.session.add(booking) 
-      db.session.commit() 
 
       #flashing a message which needs to be handled by the html
-      #flash('Your comment has been added', 'success')  
+      #flash('Your comment has been added', 'success')
       print('Your event has been booked', 'success') 
     # using redirect sends a GET request to destination.show
-    return render_template('user.html', form=form)
+    return render_template('logoutscreen.html', heading='Event Booked')
 
 
 @bp.route('/update/<id>', methods=['GET', 'POST'])
