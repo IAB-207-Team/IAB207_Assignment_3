@@ -32,7 +32,7 @@
                 <p><b>Ticket Price</b></p> 
                 <p>$ {{Event.ticket_price}}</p>  
                 <a href="{{ url_for('auth.update', id=Event.id) }}" class="btn btn-primary">Update Event</a>
-                <a href="{{ url_for('main.booking', id =Event.id) }}" class="btn btn-primary btn-lg btn-block">Book Ticket</a
+                <a href="{{ url_for('auth.book_event', id =Event.id) }}" class="btn btn-primary">Book Ticket</a>
               </div>  
             </div>  
           </div>  
