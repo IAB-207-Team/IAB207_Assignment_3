@@ -134,37 +134,30 @@ def comment(id):
 
 
 
-@bp.route('/events', methods=['GET', 'POST'])
+@bp.route('/book_tickets/<id>', methods=['GET', 'POST'])
+def book_event(id):  
+    form = BookEvent()  
+    #get an events object associated to the page and the comment
+    event_obj = Event.query.filter_by(id=id).first()  
+    if form.validate_on_submit():  
+      #read the comment from the form
+      booking = Booking( Event = event_obj,
+            email_id = form.email_id.data,
+            quantity = form.quantity.data,
+            total_price = Booking.quantity * Event.ticket_price,
+            card_no = form.card_no.data,
+            expiry = form.expiry.data,
+            CVV = form.CVV.data) 
+      #here the back-referencing works - comment.Event is set
+      # and the link is created
+      db.session.add(booking) 
+      db.session.commit() 
 
-def book_event(event_id):
-    form = BookEvent()
-    if form.validate_on_submit():
-    #read the comment from the form
-        book = BookEvent(email=form.email.id.data, card_no = form.card_no.data, expiry = form.expiry.data, CVV = form.CVV.data)
-    
-
-    if book is None:
-        return 'Event not found', 404
-
-    if request.method == 'POST' 'GET':
-        if Event.ticket_count == 0:
-            Event.status = 'Sold Out'
-            db.session.commit()
-            return 'Event is sold out'
-
-        quantity = int(request.form['quantity'])
-        if quantity > Event.ticket_count:
-            return 'Order cannot be placed. The quantity exceeds the available tickets.'
-
-        new_ticket_count = Event.ticket_count - quantity
-        Event.ticket_count = new_ticket_count
-        if new_ticket_count == 0:
-            Event.status = 'Sold Out'
-            db.session.commit()
-
-        else:
-            return redirect(url_for('booking.book_event'))
-    return render_template('book_event.html', event=Event)
+      #flashing a message which needs to be handled by the html
+      #flash('Your comment has been added', 'success')  
+      print('Your event has been booked', 'success') 
+    # using redirect sends a GET request to destination.show
+    return redirect(url_for('auth.book', id=id))
 
 
 @bp.route('/update/<id>', methods=['GET', 'POST'])
