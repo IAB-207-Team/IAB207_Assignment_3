@@ -19,3 +19,10 @@ def search():
         return render_template('index.html', event=event)
     else:
         return redirect(url_for('index'))
+    
+ # Booking endpoint
+@bp.route('/booking/<int:id>')
+def booking(id):
+    # Handle the booking logic
+    # Render the booking.html template
+    return render_template('booking.html', event_id = id)
