@@ -157,7 +157,7 @@ def book_event(id):
       #flash('Your comment has been added', 'success')  
       print('Your event has been booked', 'success') 
     # using redirect sends a GET request to destination.show
-    return redirect(url_for('auth.book', id=id))
+    return render_template('user.html', form=form)
 
 
 @bp.route('/update/<id>', methods=['GET', 'POST'])
