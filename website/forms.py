@@ -20,13 +20,14 @@ class CreateEvent(FlaskForm):
     image = FileField('Destination Image', validators=[FileRequired(message='Image cannot be empty'), FileAllowed(ALLOWED_FILE, message='Only supports png,jpg,JPG,PNG')])
     submit = SubmitField('Create')
 
-# Booking an event form 
+# Booking the Event Form
 class BookEvent(FlaskForm):
     email_id=StringField("Email Address", validators=[InputRequired('Enter email')])
-    card_no = IntegerField('Card Number' , validators=[InputRequired(), Length(min=0, max=16)])
+    card_no = IntegerField('Card Number', validators=[InputRequired()])
     quantity = IntegerField('Quantity')
     expiry = StringField('Expiry Date')
     CVV =  IntegerField('Security Code')
+    submit = SubmitField("Book Event")
  
 
 #creates the login information
